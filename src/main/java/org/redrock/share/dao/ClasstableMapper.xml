@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.redrock.share.dao.ClasstableMapper" >
+  <resultMap id="BaseResultMap" type="org.redrock.share.pojo.Classtable" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stu_num" property="stuNum" jdbcType="VARCHAR" />
+    <result column="week" property="week" jdbcType="VARCHAR" />
+    <result column="jieshu" property="jieshu" jdbcType="VARCHAR" />
+    <result column="class_num" property="classNum" jdbcType="VARCHAR" />
+    <result column="course_num" property="courseNum" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="course_point" property="coursePoint" jdbcType="VARCHAR" />
+    <result column="class_type" property="classType" jdbcType="VARCHAR" />
+    <result column="teacher" property="teacher" jdbcType="VARCHAR" />
+    <result column="class_time" property="classTime" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="term_time" property="termTime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, stu_num, week, jieshu, class_num, course_num, course_name, course_point, class_type, 
+    teacher, class_time, location, term_time, status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.redrock.share.pojo.ClasstableExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from classtable
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classtable
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classtable
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.redrock.share.pojo.ClasstableExample" >
+    delete from classtable
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.redrock.share.pojo.Classtable" >
+    insert into classtable (id, stu_num, week, 
+      jieshu, class_num, course_num, 
+      course_name, course_point, class_type, 
+      teacher, class_time, location, 
+      term_time, status)
+    values (#{id,jdbcType=INTEGER}, #{stuNum,jdbcType=VARCHAR}, #{week,jdbcType=VARCHAR}, 
+      #{jieshu,jdbcType=VARCHAR}, #{classNum,jdbcType=VARCHAR}, #{courseNum,jdbcType=VARCHAR}, 
+      #{courseName,jdbcType=VARCHAR}, #{coursePoint,jdbcType=VARCHAR}, #{classType,jdbcType=VARCHAR}, 
+      #{teacher,jdbcType=VARCHAR}, #{classTime,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{termTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.redrock.share.pojo.Classtable" >
+    insert into classtable
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stuNum != null" >
+        stu_num,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+      <if test="jieshu != null" >
+        jieshu,
+      </if>
+      <if test="classNum != null" >
+        class_num,
+      </if>
+      <if test="courseNum != null" >
+        course_num,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="coursePoint != null" >
+        course_point,
+      </if>
+      <if test="classType != null" >
+        class_type,
+      </if>
+      <if test="teacher != null" >
+        teacher,
+      </if>
+      <if test="classTime != null" >
+        class_time,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="termTime != null" >
+        term_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stuNum != null" >
+        #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=VARCHAR},
+      </if>
+      <if test="jieshu != null" >
+        #{jieshu,jdbcType=VARCHAR},
+      </if>
+      <if test="classNum != null" >
+        #{classNum,jdbcType=VARCHAR},
+      </if>
+      <if test="courseNum != null" >
+        #{courseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="coursePoint != null" >
+        #{coursePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="classType != null" >
+        #{classType,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null" >
+        #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="classTime != null" >
+        #{classTime,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="termTime != null" >
+        #{termTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.redrock.share.pojo.ClasstableExample" resultType="java.lang.Integer" >
+    select count(*) from classtable
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update classtable
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.stuNum != null" >
+        stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.week != null" >
+        week = #{record.week,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jieshu != null" >
+        jieshu = #{record.jieshu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classNum != null" >
+        class_num = #{record.classNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseNum != null" >
+        course_num = #{record.courseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseName != null" >
+        course_name = #{record.courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursePoint != null" >
+        course_point = #{record.coursePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classType != null" >
+        class_type = #{record.classType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacher != null" >
+        teacher = #{record.teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classTime != null" >
+        class_time = #{record.classTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null" >
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.termTime != null" >
+        term_time = #{record.termTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update classtable
+    set id = #{record.id,jdbcType=INTEGER},
+      stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      week = #{record.week,jdbcType=VARCHAR},
+      jieshu = #{record.jieshu,jdbcType=VARCHAR},
+      class_num = #{record.classNum,jdbcType=VARCHAR},
+      course_num = #{record.courseNum,jdbcType=VARCHAR},
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      course_point = #{record.coursePoint,jdbcType=VARCHAR},
+      class_type = #{record.classType,jdbcType=VARCHAR},
+      teacher = #{record.teacher,jdbcType=VARCHAR},
+      class_time = #{record.classTime,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      term_time = #{record.termTime,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.redrock.share.pojo.Classtable" >
+    update classtable
+    <set >
+      <if test="stuNum != null" >
+        stu_num = #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null" >
+        week = #{week,jdbcType=VARCHAR},
+      </if>
+      <if test="jieshu != null" >
+        jieshu = #{jieshu,jdbcType=VARCHAR},
+      </if>
+      <if test="classNum != null" >
+        class_num = #{classNum,jdbcType=VARCHAR},
+      </if>
+      <if test="courseNum != null" >
+        course_num = #{courseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="coursePoint != null" >
+        course_point = #{coursePoint,jdbcType=VARCHAR},
+      </if>
+      <if test="classType != null" >
+        class_type = #{classType,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null" >
+        teacher = #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="classTime != null" >
+        class_time = #{classTime,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="termTime != null" >
+        term_time = #{termTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.redrock.share.pojo.Classtable" >
+    update classtable
+    set stu_num = #{stuNum,jdbcType=VARCHAR},
+      week = #{week,jdbcType=VARCHAR},
+      jieshu = #{jieshu,jdbcType=VARCHAR},
+      class_num = #{classNum,jdbcType=VARCHAR},
+      course_num = #{courseNum,jdbcType=VARCHAR},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      course_point = #{coursePoint,jdbcType=VARCHAR},
+      class_type = #{classType,jdbcType=VARCHAR},
+      teacher = #{teacher,jdbcType=VARCHAR},
+      class_time = #{classTime,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      term_time = #{termTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
