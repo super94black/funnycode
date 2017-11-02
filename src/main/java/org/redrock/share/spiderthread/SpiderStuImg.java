@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * @Author zhang
  * @Date 2017/10/31 20:38
- * @Content
+ * @Content 爬取所有学生的照片
  */
 public class SpiderStuImg extends Thread {
     private SpiderService spiderService = new SpiderServiceImpl();

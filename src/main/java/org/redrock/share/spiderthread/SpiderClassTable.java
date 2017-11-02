@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * @Author zhang
  * @Date 2017/10/30 20:24
- * @Content爬取所有的课表
+ * @Content 爬取所有的课表
  */
 
 public class SpiderClassTable extends Thread {
