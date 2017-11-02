@@ -44,6 +44,9 @@ public class SpiderServiceImpl implements SpiderService {
     private ClasstableMapper classtableMapper;
     private JedisClient js = new JedisClient();
 
+    /**
+    * 爬取课表，将每个人的所有课放入一个List中（有意外情况未匹配完）
+    **/
     @Test
     public void sprideFromJwzx() throws IOException {
         String url = "http://jwzx.cqupt.congm.in/jwzxtmp/kebiao/kb_stu.php?xh=2015211505";
@@ -103,6 +106,10 @@ public class SpiderServiceImpl implements SpiderService {
         }
         System.out.println(arrayList);
     }
+
+    /**
+    * 爬取课表后写入POJO使数据能装库
+    **/
 
     @Test
     public void getClassTableFromJwzx() throws IOException, InterruptedException {
@@ -218,6 +225,10 @@ public class SpiderServiceImpl implements SpiderService {
         }
 
     }
+
+    /**
+    * 测试开始
+    **/
 
     @Test
     public void test() {
